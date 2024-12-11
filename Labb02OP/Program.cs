@@ -48,8 +48,20 @@ class Program
                 //Skapar en ny variabel av data typen double som innehåller en uträkning. Använder mig av metoden .Pow för att räkna ut uphöjt till 0.16.
                 double windChillWCT = 13.12 + 0.6215 * temperature - 11.37 * Math.Pow(windSpeed, 0.16) + 0.3965 * temperature * Math.Pow(windSpeed, 0.16);
 
+                string coldnessString;
+                if (windChillWCT > -25) {
+                    coldnessString = "Kallt";
+                } else if (windChillWCT >= -35) {
+                    coldnessString = "Mycket kallt";
+                } else if (windChillWCT >= -60) {
+                    coldnessString = "Risk för frostskada";
+                } else {   //default allt är kallare än -60
+                    coldnessString = "Stor risk för frostskada";
+                }
 
                 //Skriver ut resultatet till användare
+
+                Console.WriteLine($"\nDet kommer bli {coldnessString}");
                 Console.WriteLine($"\nWindchill-faktorn vid en temperatur på {temperature}°C och en vindhastighet på {windSpeed} km/h är: {windChillWCT}\n");
                 break;
 
